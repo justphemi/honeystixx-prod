@@ -335,7 +335,7 @@ export function OrderForm({ product }: OrderFormProps) {
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Shipping fee</span>
                     <span>
-                      {formatCurrency(0)}
+                      FREE
                     </span>
                   </div>
                   {product.discount > 0 && (
