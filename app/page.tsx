@@ -101,9 +101,12 @@ export default function HoneystixxLanding() {
       <div className="fixed bottom-6 item-center justify-center w-full flex z-50">
         <button
           onClick={goToOrder}
-          className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 font-semibold text-lg"
+          className="flex flex-col bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-300 font-semibold text-lg"
         >
-          Order Now - 70% OFF
+          <label className='tangerine-regular text-xl'>
+            Get your honeystixx - 70% OFF
+          </label>
+          <span className='text-[10px] text-muted-forground tracking-widest'>(FREE SHIPPING)</span>
         </button>
       </div>
 

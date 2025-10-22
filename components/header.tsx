@@ -25,7 +25,7 @@ export function Header() {
 
 //         <div className="flex items-center gap-4">
 //           <Button asChild variant="default" className="bg-primary hover:bg-primary-hover text-white">
-//             <Link href="/order">Order Now</Link>
+//             <Link href="/order">Get your honeystixx</Link>
 //           </Button>
 //         </div>
 //       </div>

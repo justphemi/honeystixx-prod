@@ -34,7 +34,7 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button asChild size="lg" className="bg-primary hover:bg-primary-hover text-white text-lg px-8">
                 <Link href="/order">
-                  Order Now
+                  Get your honeystixx
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>

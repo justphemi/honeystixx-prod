@@ -167,7 +167,7 @@ export function OrderForm({ product }: OrderFormProps) {
           {/* Left Section */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="p-6 border-pink-500">
-              <h2 className="font-serif text-2xl font-bold mb-1">Personal Information</h2>
+              <h2 className="tangerine-regular text-2xl font-bold mb-1">Personal Information</h2>
               <div className="space-y-4">
                 <div className="gap-3 flex flex-col">
                   <Label htmlFor="name">Full Name *</Label>
@@ -212,7 +212,7 @@ export function OrderForm({ product }: OrderFormProps) {
               </div>
             </Card>
             <Card className="p-6 border-pink-100">
-              <h2 className="font-serif text-2xl font-bold mb-1">Shipping Information</h2>
+              <h2 className="tangerine-regular text-2xl font-bold mb-1">Shipping Information</h2>
               <div className="space-y-4">
                 <div className="gap-3 flex flex-col">
                   <Label htmlFor="street"> Address *</Label>
@@ -284,7 +284,7 @@ export function OrderForm({ product }: OrderFormProps) {
           {/* Right Section */}
           <div className="lg:col-span-1">
             <Card className="p-6 border-pink-100 sticky top-24">
-              <h2 className="font-serif text-2xl font-bold mb-1">Order Summary</h2>
+              <h2 className="tangerine-regular text-2xl font-bold mb-1">Order Summary</h2>
               <div className="space-y-4 mb-1">
                 <div className="flex gap-4">
                   <div className="w-8 p-2 h-8 bg-pink-50 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -332,16 +332,22 @@ export function OrderForm({ product }: OrderFormProps) {
                       {formatCurrency(finalPrice)}
                     </span>
                   </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Shipping fee</span>
+                    <span>
+                      {formatCurrency(0)}
+                    </span>
+                  </div>
                   {product.discount > 0 && (
                     <div className="flex justify-between text-sm text-green-600">
                       <span>Discount</span>
                       <span>-{formatCurrency((product.price - finalPrice) * quantity)}</span>
                     </div>
                   )}
-                  <div className="flex justify-between text-sm">
+                  {/* <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal</span>
                     <span>{formatCurrency(totalAmount)}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-4 border-t border-pink-100">
                   <span>Total</span>
@@ -370,7 +376,7 @@ export function OrderForm({ product }: OrderFormProps) {
                       Processing...
                     </>
                   ) : (
-                    "Complete Form to Continue"
+                    "Pay Now"
                   )}
                 </Button>
               )}

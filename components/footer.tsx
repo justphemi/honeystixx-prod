@@ -8,11 +8,11 @@ export function Footer() {
         <div className="grid md:grid-cols-2 gap-8 mb-8"> 
 
           <div>
-            <h4 className="font-semibold mb-4">Actions</h4>
+            <h4 className="font-semibold tangerine-regular mb-4">Actions</h4>
             <ul className="space-y-2 text-sm"> 
               <li>
                 <Link href="/order" className="text-muted-foreground hover:text-primary transition-colors">
-                  Order Now
+                  Get your honeystixx
                 </Link>
               </li>
               <li>
@@ -24,7 +24,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
+            <h4 className="font-semibold tangerine-regular mb-4">Contact Us</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="tel:0800011223344" className="text-muted-foreground hover:text-primary transition-colors">

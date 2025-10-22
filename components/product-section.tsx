@@ -62,7 +62,7 @@ export function ProductSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary-hover text-white">
-                <Link href="/order">Order Now</Link>
+                <Link href="/order">Get your honeystixx</Link>
               </Button>
               <Button
                 asChild
