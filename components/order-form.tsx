@@ -167,7 +167,7 @@ export function OrderForm({ product }: OrderFormProps) {
           {/* Left Section */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="p-6 border-pink-500">
-              <h2 className="font-serif text-2xl font-bold mb-6">Customer Information</h2>
+              <h2 className="font-serif text-2xl font-bold mb-1">Personal Information</h2>
               <div className="space-y-4">
                 <div className="gap-3 flex flex-col">
                   <Label htmlFor="name">Full Name *</Label>
@@ -212,7 +212,7 @@ export function OrderForm({ product }: OrderFormProps) {
               </div>
             </Card>
             <Card className="p-6 border-pink-100">
-              <h2 className="font-serif text-2xl font-bold mb-6">Shipping Address</h2>
+              <h2 className="font-serif text-2xl font-bold mb-1">Shipping Information</h2>
               <div className="space-y-4">
                 <div className="gap-3 flex flex-col">
                   <Label htmlFor="street"> Address *</Label>
@@ -284,8 +284,8 @@ export function OrderForm({ product }: OrderFormProps) {
           {/* Right Section */}
           <div className="lg:col-span-1">
             <Card className="p-6 border-pink-100 sticky top-24">
-              <h2 className="font-serif text-2xl font-bold mb-6">Order Summary</h2>
-              <div className="space-y-4 mb-6">
+              <h2 className="font-serif text-2xl font-bold mb-1">Order Summary</h2>
+              <div className="space-y-4 mb-1">
                 <div className="flex gap-4">
                   <div className="w-8 p-2 h-8 bg-pink-50 rounded-lg flex items-center justify-center flex-shrink-0">
                     <ShoppingCart className="w-8 h-8 text-primary" />

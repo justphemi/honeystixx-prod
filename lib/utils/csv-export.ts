@@ -26,7 +26,7 @@ export function exportOrdersToCSV(orders: Order[]): string {
     order.totalAmount,
     order.paymentStatus,
     order.orderStatus,
-    order.createdAt.toLocaleDateString(),
+    getFormattedDate(order.createdAt)
   ])
 
   return [headers, ...rows].map((row) => row.join(",")).join("\n")
@@ -72,7 +72,7 @@ export function exportComplaintsToCSV(complaints: Complaint[]): string {
     `"${complaint.description.replace(/"/g, '""')}"`,
     complaint.status,
     complaint.adminResponse ? `"${complaint.adminResponse.replace(/"/g, '""')}"` : "N/A",
-    complaint.createdAt.toLocaleDateString(),
+    getFormattedDate(complaint.createdAt)
   ])
 
   return [headers, ...rows].map((row) => row.join(",")).join("\n")
@@ -91,3 +91,21 @@ export function downloadCSV(csvContent: string, filename: string): void {
   link.click()
   document.body.removeChild(link)
 }
+
+// Utility function to format dates
+export function getFormattedDate (createdAt: any):string {
+  // Handle string or number by converting to Date
+  const date = new Date(createdAt);
+
+  // Check if the date is valid
+  if (isNaN(date.getTime())) {
+    return "N/A";
+  }
+
+  // Format the date
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+};

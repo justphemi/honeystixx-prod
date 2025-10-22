@@ -18,7 +18,7 @@ export default function ComplaintsPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
-    orderReference: "",
+    orderReference: "empty",
     customerName: "",
     customerEmail: "",
     customerPhone: "",

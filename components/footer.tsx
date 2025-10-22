@@ -32,8 +32,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="mailto:honeystixxsales@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                  Email honeystixxsales@gmail.com
+                <Link href="mailto:Honeystixxpro@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                  Email US: Honeystixxpro@gmail.com
                 </Link>
               </li>
             </ul>
