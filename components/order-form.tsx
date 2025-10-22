@@ -3,14 +3,19 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import dynamic from "next/dynamic"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Minus, Plus, ShoppingCart, Loader2 } from "lucide-react"
 import type { Product } from "@/lib/types"
-import { PaystackButton } from "react-paystack"
 import { motion, AnimatePresence } from "framer-motion"
+
+// Dynamically import PaystackButton
+const PaystackButton = dynamic(() => import("react-paystack").then((mod) => mod.PaystackButton), {
+  ssr: false,
+})
 
 interface OrderFormProps {
   product: Product
@@ -20,7 +25,7 @@ export function OrderForm({ product }: OrderFormProps) {
   const router = useRouter()
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [processing, setProcessing] = useState(false) // overlay state
+  const [processing, setProcessing] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -40,15 +45,15 @@ export function OrderForm({ product }: OrderFormProps) {
     setIsClient(true)
   }, [])
 
-  const finalPrice = product.discount/100 * product.price
-  const totalAmount = finalPrice * quantity
+  const finalPrice = product.discount / 100 * product.price
+  const totalAmount = Number.isNaN(finalPrice * quantity) ? 0 : finalPrice * quantity
 
   const formatCurrency = (amount: number) =>
     amount.toLocaleString("en-NG", {
       style: "currency",
       currency: "NGN",
       minimumFractionDigits: 2,
-      maximumFractionDigits: 2, 
+      maximumFractionDigits: 2,
     })
 
   const handleQuantityChange = (delta: number) => {
@@ -127,7 +132,6 @@ export function OrderForm({ product }: OrderFormProps) {
   }
 
   const handlePaystackClose = () => {
-    // Display overlay immediately after payment window closes
     setProcessing(true)
   }
 
@@ -164,7 +168,6 @@ export function OrderForm({ product }: OrderFormProps) {
           <div className="lg:col-span-2 space-y-6">
             <Card className="p-6 border-pink-500">
               <h2 className="font-serif text-2xl font-bold mb-6">Customer Information</h2>
-
               <div className="space-y-4">
                 <div className="gap-3 flex flex-col">
                   <Label htmlFor="name">Full Name *</Label>
@@ -178,7 +181,6 @@ export function OrderForm({ product }: OrderFormProps) {
                   />
                   {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
                 </div>
-
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="gap-3 flex flex-col">
                     <Label htmlFor="email">Email Address *</Label>
@@ -193,7 +195,6 @@ export function OrderForm({ product }: OrderFormProps) {
                     />
                     {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
                   </div>
-
                   <div className="gap-3 flex flex-col">
                     <Label htmlFor="phone">Phone Number *</Label>
                     <Input
@@ -210,7 +211,6 @@ export function OrderForm({ product }: OrderFormProps) {
                 </div>
               </div>
             </Card>
-
             <Card className="p-6 border-pink-100">
               <h2 className="font-serif text-2xl font-bold mb-6">Shipping Address</h2>
               <div className="space-y-4">
@@ -226,7 +226,6 @@ export function OrderForm({ product }: OrderFormProps) {
                   />
                   {errors.street && <p className="text-sm text-red-500 mt-1">{errors.street}</p>}
                 </div>
-
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="gap-3 flex flex-col">
                     <Label htmlFor="city">City *</Label>
@@ -240,7 +239,6 @@ export function OrderForm({ product }: OrderFormProps) {
                     />
                     {errors.city && <p className="text-sm text-red-500 mt-1">{errors.city}</p>}
                   </div>
-
                   <div className="gap-3 flex flex-col">
                     <Label htmlFor="state">State *</Label>
                     <Input
@@ -254,7 +252,6 @@ export function OrderForm({ product }: OrderFormProps) {
                     {errors.state && <p className="text-sm text-red-500 mt-1">{errors.state}</p>}
                   </div>
                 </div>
-
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="gap-3 flex flex-col">
                     <Label htmlFor="zipCode">ZIP Code *</Label>
@@ -268,7 +265,6 @@ export function OrderForm({ product }: OrderFormProps) {
                     />
                     {errors.zipCode && <p className="text-sm text-red-500 mt-1">{errors.zipCode}</p>}
                   </div>
-
                   <div className="gap-3 flex flex-col">
                     <Label htmlFor="country">Country *</Label>
                     <Input
@@ -285,12 +281,10 @@ export function OrderForm({ product }: OrderFormProps) {
               </div>
             </Card>
           </div>
-
           {/* Right Section */}
           <div className="lg:col-span-1">
             <Card className="p-6 border-pink-100 sticky top-24">
               <h2 className="font-serif text-2xl font-bold mb-6">Order Summary</h2>
-
               <div className="space-y-4 mb-6">
                 <div className="flex gap-4">
                   <div className="w-8 p-2 h-8 bg-pink-50 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -301,7 +295,6 @@ export function OrderForm({ product }: OrderFormProps) {
                     <p className="text-sm text-muted-foreground">{product.description}</p>
                   </div>
                 </div>
-
                 <div className="flex items-center justify-between pt-4 border-t border-pink-100">
                   <span className="font-medium">Quantity</span>
                   <div className="flex items-center gap-3">
@@ -327,7 +320,6 @@ export function OrderForm({ product }: OrderFormProps) {
                     </Button>
                   </div>
                 </div>
-
                 <div className="space-y-2 pt-4 border-t border-pink-100">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Price per unit</span>
@@ -340,26 +332,22 @@ export function OrderForm({ product }: OrderFormProps) {
                       {formatCurrency(finalPrice)}
                     </span>
                   </div>
-
                   {product.discount > 0 && (
                     <div className="flex justify-between text-sm text-green-600">
                       <span>Discount</span>
                       <span>-{formatCurrency((product.price - finalPrice) * quantity)}</span>
                     </div>
                   )}
-
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Subtotal</span>
                     <span>{formatCurrency(totalAmount)}</span>
                   </div>
                 </div>
-
                 <div className="flex justify-between font-bold text-lg pt-4 border-t border-pink-100">
                   <span>Total</span>
                   <span className="text-primary">{formatCurrency(totalAmount)}</span>
                 </div>
               </div>
-
               {isFormValid && formData.email && isClient ? (
                 <PaystackButton
                   {...componentProps}
@@ -386,7 +374,6 @@ export function OrderForm({ product }: OrderFormProps) {
                   )}
                 </Button>
               )}
-
               <p className="text-xs text-muted-foreground text-center mt-4">
                 Secure payment powered by Paystack. Your information is encrypted and secure.
               </p>
@@ -394,8 +381,6 @@ export function OrderForm({ product }: OrderFormProps) {
           </div>
         </div>
       </form>
-
-      {/* Processing Overlay */}
       <AnimatePresence>
         {processing && (
           <motion.div
